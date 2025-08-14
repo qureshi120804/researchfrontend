@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabaseClient'
+import { supabase } from '../lib/supabaseClient'
 
 export default function NavBar({ currentPage, onNavigate }: { currentPage: string, onNavigate: (p: string)=>void }) {
   const [email, setEmail] = useState<string | null>(null)
