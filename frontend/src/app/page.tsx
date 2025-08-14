@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import styles from './page.module.css'
-import { supabase } from '../../lib/supabaseClient'
+import { supabase } from '@/lib/supabaseClient'
 import Link from 'next/link'
 import Sidebar from '../../components/Sidebar'
 
