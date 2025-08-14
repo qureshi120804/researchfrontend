@@ -242,6 +242,11 @@ export default function Home() {
         body: JSON.stringify({ query }),
       })
       
+      // Add null check here to prevent crash
+      if (!res.ok) {
+        throw new Error(`API request failed with status ${res.status}`)
+      }
+      
       const reader = res.body?.getReader()
       const decoder = new TextDecoder('utf-8')
       let fullResponse = ''
@@ -314,11 +319,8 @@ export default function Home() {
       }
     } catch (error) {
       console.error('Error fetching results:', error)
-      setSearchResults([{
-        title: 'Error',
-        url: '#',
-        abstract: 'Failed to fetch search results. Please try again.'
-      }])
+      // Set to empty array instead of error object to prevent length crash
+      setSearchResults([])
     }
 
     setLoading(false)
