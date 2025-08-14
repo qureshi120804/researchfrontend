@@ -90,7 +90,7 @@ export default function Sidebar({ onHistoryItemClick, currentUser, searchQuery, 
     if (isValidSearchData(searchQuery, searchResults) && currentUser) {
       // Use a try-catch wrapper to prevent errors from breaking the UI
       try {
-        addToSearchHistory(searchQuery!, searchResults!.length)
+        addToSearchHistory(searchQuery!, searchResults?.length)
       } catch (error) {
         console.warn('Failed to update search history, but continuing:', error)
         // Still update local state even if database fails
@@ -98,7 +98,7 @@ export default function Sidebar({ onHistoryItemClick, currentUser, searchQuery, 
         const newItem: SearchHistoryItem = {
           id: tempId,
           query: searchQuery!,
-          results_count: searchResults!.length,
+          results_count: searchResults?.length,
           created_at: new Date().toISOString()
         }
         setSearchHistory(prev => [newItem, ...prev.slice(0, 19)])

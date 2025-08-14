@@ -429,8 +429,8 @@ export default function Home() {
           onHistoryItemClick={handleHistoryItemClick}
           currentUser={user}
           searchQuery={isViewingHistory ? undefined : (lastSearchQuery.trim() ? lastSearchQuery : undefined)} // Only pass search query when not viewing history and query is not empty
-          searchResults={isViewingHistory ? undefined : (searchResults.length > 0 ? searchResults : undefined)} // Only pass search results when not viewing history and results exist
-        />
+          searchResults={isViewingHistory ? undefined : (searchResults?.length > 0 ? searchResults : undefined)}
+          />
 
         {/* Main Content Area */}
         <main className={styles.content}>
@@ -477,8 +477,8 @@ export default function Home() {
               </div>
 
               <div className={styles.resultsHeader}>
-                <h2 className={styles.resultsTitle}>Top {searchResults.length} Research Articles</h2>
-                <p className={styles.resultsSubtitle}>Showing results for '{query}'</p>
+              <h2 className={styles.resultsTitle}>Top {searchResults?.length || 0} Research Articles</h2>
+              <p className={styles.resultsSubtitle}>Showing results for '{query}'</p>
               </div>
 
               {loading && (
@@ -496,7 +496,7 @@ export default function Home() {
               )}
 
               <div className={styles.resultsList}>
-                {searchResults.map((article, index) => (
+                {searchResults?.map((article, index) => (
                   <div key={index} className={styles.articleCard}>
                     <div className={styles.articleHeader}>
                       <h3 className={styles.articleTitle}>{article.title}</h3>
